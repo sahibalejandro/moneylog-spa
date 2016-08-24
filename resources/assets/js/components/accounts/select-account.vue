@@ -2,28 +2,21 @@
     <select class="form-control" name="account_id" id="account_id" v-model="id">
         <option v-for="account in accounts" :value="account.id">{{ account.name }}</option>
     </select>
+    <add-account @account-added="selectAddedAccount"></add-account>
 </template>
 
 <script>
     import {accounts} from '../../vuex/getters';
+    import AddAccount from './add-account.vue';
 
     export default {
         props: ['id'],
+        components: { AddAccount },
         vuex: { getters: { accounts } },
 
-        ready()
+        created()
         {
             this.selectDefaultAccount();
-        },
-
-        watch: {
-            accounts()
-            {
-                // El array 'accounts' es cargado de forma asincrónica, por
-                // esta razón debemos llamar 'selectDefaultAccount' aquí
-                // además de ser llamado en el método 'ready'. Fusha!
-                this.selectDefaultAccount();
-            }
         },
 
         methods: {
@@ -35,7 +28,12 @@
                 if (! this.id && this.accounts.length > 0) {
                     this.id = this.accounts[0].id;
                 }
-            }
+            },
+
+            selectAddedAccount(account)
+            {
+                this.id = account.id;
+            },
         }
     };
 </script>

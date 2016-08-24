@@ -24,5 +24,10 @@ export default new Vuex.Store({
         {
             state.accounts = accounts;
         },
+
+        ADD_ACCOUNT(state, account)
+        {
+            state.accounts.push(account);
+        }
     }
 });

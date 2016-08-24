@@ -3,16 +3,19 @@ import store from './vuex/store';
 
 export default Vue.extend({
     store,
+
     data()
     {
         return {
             ready: false
         };
     },
+
     compiled()
     {
         this.loadAccounts();
     },
+
     vuex: {
         actions: {
             /**

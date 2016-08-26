@@ -1,8 +1,11 @@
 <template>
     <div class="lead">Movimientos</div>
 
-    <a v-link="{name:'movements.create'}" class="btn btn-sm btn-default">
-        Nuevo movimiento
+    <a v-link="{name:'movements.create'}" class="btn btn-sm btn-link">
+        + Movimiento
+    </a>
+    <a v-link="{name:'transfers.create'}" class="btn btn-sm btn-link">
+        + Transferencia
     </a>
     <hr>
 

@@ -21,7 +21,7 @@
                 <!-- Amount -->
                 <div class="form-group">
                     <label for="amount" class="control-label">Cantidad:</label>
-                    <input class="form-control" type="number" step="0.01" v-model="movement.amount | cents">
+                    <amount :amount.sync="movement.amount"></amount>
                 </div>
 
                 <!-- Date -->
@@ -45,11 +45,13 @@
     </div>
 </template>
 <script>
+    import Amount from '../amount.vue';
     import SelectAccount from '../accounts/select-account.vue';
 
     export default {
         components: {
-            SelectAccount
+            Amount,
+            SelectAccount,
         },
 
         data()
@@ -59,14 +61,14 @@
                 states: {
                     loadFailed: false,
                     saving: false,
-                    saveFailed: false
+                    saveFailed: false,
                 },
                 movement: {
                     description: null,
                     amount: null,
                     date: null,
                     account_id: null,
-                }
+                },
             };
         }, // data
 
@@ -107,7 +109,7 @@
                         console.error('No se pudo guardar.');
                     }
                 );
-            } // methods.save
-        } // methods
+            }, // methods.save
+        }, // methods
     };
 </script>

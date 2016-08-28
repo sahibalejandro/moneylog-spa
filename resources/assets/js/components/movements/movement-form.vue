@@ -5,23 +5,18 @@
     <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
 
-            <!-- Mensaje de error en caso de fallar al cargar la información -->
-            <div v-show="states.loadFailed" class="alert alert-sm alert-danger">
-                No se pudo cargar la información.
-            </div>
-
-            <form v-show="!states.loadFailed" @submit.prevent="save">
-
-                <!-- Description -->
-                <div class="form-group">
-                    <label for="description" class="control-label">Descripción:</label>
-                    <input class="form-control" type="text" v-model="movement.description" autofocus>
-                </div>
+            <form @submit.prevent="save">
 
                 <!-- Amount -->
                 <div class="form-group">
                     <label for="amount" class="control-label">Cantidad:</label>
                     <amount :amount.sync="movement.amount"></amount>
+                </div>
+
+                <!-- Description -->
+                <div class="form-group">
+                    <label for="description" class="control-label">Descripción:</label>
+                    <input class="form-control" type="text" v-model="movement.description" required>
                 </div>
 
                 <!-- Date -->
@@ -45,71 +40,77 @@
     </div>
 </template>
 <script>
-    import Amount from '../amount.vue';
-    import SelectAccount from '../accounts/select-account.vue';
+import m from '../../messages';
+import Amount from '../amount.vue';
+import SelectAccount from '../accounts/select-account.vue';
 
-    export default {
-        components: {
-            Amount,
-            SelectAccount,
-        },
+export default {
+    components: {
+        Amount,
+        SelectAccount,
+    },
 
-        data()
+    data()
+    {
+        return {
+            editMode: false,
+            states: {
+                saving: false,
+            },
+            movement: {
+                description: null,
+                amount: null,
+                date: null,
+                account_id: null,
+            },
+        };
+    }, // data
+
+    created()
+    {
+        this.editMode = this.$route.params.id != undefined;
+
+        if (this.editMode) {
+            this.get(this.$route.params.id);
+        }
+    },
+
+    methods: {
+        get(id)
         {
-            return {
-                editMode: false,
-                states: {
-                    loadFailed: false,
-                    saving: false,
-                    saveFailed: false,
+            this.$http.get('/api/movements/' + id).then(
+                response => {
+                    this.movement = response.json();
                 },
-                movement: {
-                    description: null,
-                    amount: null,
-                    date: null,
-                    account_id: null,
-                },
-            };
-        }, // data
+                response => {
+                    // bootstrap/vue-resource.js
+                    this.$router.go({name: 'movements.index'});
+                }
+            );
+        }, // methods.get
 
-        created()
+        save()
         {
-            this.editMode = this.$route.params.id != undefined;
+            let method = this.editMode ? 'patch' : 'post';
+            let url = this.editMode
+                ? '/api/movements/' + this.movement.id
+                : '/api/movements';
 
-            if (this.editMode) {
-                this.get(this.$route.params.id);
-            }
-        },
+            this.$http[method](url, this.movement).then(
+                response => {
+                    let message = method == 'post'
+                        ? 'Movimiento registrado'
+                        : 'Movimiento actualizado';
 
-        methods: {
-            get(id)
-            {
-                this.$http.get('/api/movements/' + id).then(
-                    res => {
-                        this.movement = res.json();
-                    },
-                    res => {
-                        this.states.loadFailed = true;
-                    }
-                );
-            }, // methods.get
+                    m.success(message);
 
-            save()
-            {
-                let method = this.editMode ? 'patch' : 'post';
-                let url = this.editMode
-                    ? '/api/movements/' + this.movement.id
-                    : '/api/movements';
-
-                this.$http[method](url, this.movement).then(
-                    res => {
-                        this.$router.go({name: 'movements.index'});
-                    },
-                    res => {
-                        console.error('No se pudo guardar.');
-                    }
-                );
-            }, // methods.save
-        }, // methods
-    };
+                    this.$router.go({name: 'movements.index'});
+                },
+                response => {
+                    // bootstrap/vue-resource.js
+                }
+            );
+        }, // methods.save
+    }, // methods
+};
 </script>

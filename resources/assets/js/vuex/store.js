@@ -17,14 +17,20 @@ export default new Vuex.Store({
         /**
          * Guarda las cuentas bancarias del usuario.
          *
-         * @param {Object} state
-         * @param {Array} accounts
+         * @param {object} state
+         * @param {array} accounts
          */
         SET_ACCOUNTS(state, accounts)
         {
             state.accounts = accounts;
         },
 
+        /**
+         * Agrega una nueva cuenta.
+         *
+         * @param {object} state
+         * @param {object} account
+         */
         ADD_ACCOUNT(state, account)
         {
             state.accounts.push(account);

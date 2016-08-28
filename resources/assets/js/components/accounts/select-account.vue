@@ -30,6 +30,11 @@
                 }
             },
 
+            /**
+             * Invocado cuando se agregó una cuenta nueva.
+             *
+             * @param {object} account
+             */
             selectAddedAccount(account)
             {
                 this.id = account.id;

@@ -2,10 +2,10 @@
     <div class="lead">Movimientos</div>
 
     <a v-link="{name:'movements.create'}" class="btn btn-sm btn-link">
-        + Movimiento
+        Agregar movimiento
     </a>
     <a v-link="{name:'transfers.create'}" class="btn btn-sm btn-link">
-        + Transferencia
+        Hacer transferencia
     </a>
     <hr>
 
@@ -16,54 +16,62 @@
 </template>
 
 <script>
-    import Movement from './movement.vue';
+import m from '../../messages';
+import Movement from './movement.vue';
 
-    export default {
-        components: {
-            Movement
-        },
+export default {
+    components: {
+        Movement
+    },
 
-        data()
+    data()
+    {
+        return {
+            movements: []
+        };
+    },
+
+    compiled()
+    {
+        this.loadMovements();
+    },
+
+    methods: {
+        loadMovements()
         {
-            return {
-                movements: []
-            };
-        },
-
-        compiled()
-        {
-            this.loadMovements();
-        },
-
-        methods: {
-            loadMovements()
-            {
-                this.$http.get('/api/movements').then(response => {
+            this.$http.get('/api/movements').then(
+                response => {
                     this.movements = response.json();
-                }, response => {
-                    console.error('No se pudieron cargar los movimientos');
-                });
-            },
-
-            remove(id)
-            {
-                const movement = this.movements.find(m => m.id == id);
-
-                if (confirm(`¿Borrar: ${movement.description}?`)) {
-                    this.delete(movement.id);
+                },
+                response => {
+                    // bootstrap/vue-resource.js
                 }
-            },
+            );
+        },
 
-            delete(id)
-            {
-                this.$http.delete('/api/movements/' + id)
-                    .then(response => {
-                        let index = this.movements.findIndex(m => m.id == id);
-                        this.movements.splice(index, 1);
-                    }, response => {
-                        console.error('No se pudo borrar el movimiento');
-                    });
-            },
-        }
+        remove(id)
+        {
+            let movement = this.movements.find(m => m.id == id);
+
+            m.ask(`¿Borrar: ${movement.description}?`).then(() => {
+                this.delete(movement.id);
+            }, dismiss => {
+                console.log(dismiss);
+            });
+        },
+
+        delete(id)
+        {
+            this.$http.delete('/api/movements/' + id).then(
+                response => {
+                    let index = this.movements.findIndex(m => m.id == id);
+                    this.movements.splice(index, 1);
+                },
+                response => {
+                    // bootstrap/vue-resource.js
+                }
+            );
+        },
     }
+}
 </script>

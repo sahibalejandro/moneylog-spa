@@ -18,6 +18,20 @@ $factory->define(App\Account::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Payment::class, function ($faker, $params) {
+
+    $userId = $params['user_id'] ?: factory(App\User::class)->create()->id;
+
+    return [
+        'amount' => $faker->numberBetween(10000, 100000),
+        'description' => $faker->sentence,
+        'user_id' => $userId,
+        'account_id' => function () use ($userId) {
+            return factory(App\Account::class)->create(['user_id' => $userId]);
+        },
+    ];
+});
+
 $factory->define(App\Movement::class, function (Faker\Generator $faker, $params) {
 
     $userId = $params['user_id'] ?: factory(App\User::class)->create()->id;

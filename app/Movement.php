@@ -26,8 +26,11 @@ class Movement extends Model
         static::bootTraits();
 
         static::saved(function ($movement) {
-            Account::where('id', $movement->account_id)
-                ->increment('amount', $movement->amount);
+            $movement->account->updateAmount();
+        });
+
+        static::deleted(function ($movement) {
+            $movement->account->updateAmount();
         });
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Account;
+use App\MovementAction;
 use App\Http\Requests\Request;
 
 class AccountForm extends Request
@@ -36,8 +37,13 @@ class AccountForm extends Request
      */
     public function store()
     {
-        return $this->user()->accounts()->save(
+        $account = $this->user()->accounts()->save(
             new Account($this->all())
         );
+
+        $movementAction = new MovementAction($this->user(), $this->amount, $account);
+        $movementAction->description('Movimiento inicial')->register();
+
+        return $account;
     }
 }

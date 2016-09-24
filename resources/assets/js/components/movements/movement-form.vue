@@ -31,6 +31,11 @@
                     <select-account :id.sync="movement.account_id"></select-account>
                 </div>
 
+                <!-- Botón para agregar cuenta -->
+                <div class="form-group">
+                    <btn-modal modal="add-account">Agregar cuenta</btn-modal>
+                </div>
+
                 <!-- Botón para guardar -->
                 <div class="text-right">
                     <button type="submit" class="btn btn-primary">Guardar</button>
@@ -43,11 +48,13 @@
 import m from '../../messages';
 import Amount from '../amount.vue';
 import SelectAccount from '../accounts/select-account.vue';
+import BtnModal from '../btn-modal.vue';
 
 export default {
     components: {
         Amount,
         SelectAccount,
+        BtnModal,
     },
 
     data()

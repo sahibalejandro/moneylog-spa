@@ -1,8 +1,11 @@
 import Vue from 'vue';
 import store from './vuex/store';
+import Modal from './components/modal.vue';
 
 export default Vue.extend({
     store,
+
+    components: {Modal},
 
     data()
     {

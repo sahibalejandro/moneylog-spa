@@ -1,0 +1,38 @@
+.modal-component {
+	background-color: rgba(#000, 0.8);
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 1000;
+	justify-content: center;
+	align-items: center;
+
+	&.is-open {
+		display: flex;
+	}
+}
+
+.modal-component__close {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+}
+
+.modal-component__body {
+	background-color: white;
+	border-radius: 5px;
+	max-width: 500px;
+	padding: 20px;
+	position: relative;
+
+	@include mobile {
+		max-width: 90%;
+	}
+
+	@include tablet {
+		max-width: 80%;
+	}
+}

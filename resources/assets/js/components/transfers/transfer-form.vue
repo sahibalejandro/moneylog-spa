@@ -3,56 +3,65 @@
     <div class="lead">Transferencia</div>
     <hr>
     <form @submit.prevent="submit">
-        <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <div class="form-group">
-                    <amount class="input-lg" :amount.sync="amount"></amount>
-                </div>
-            </div>
-        </div>
 
         <div class="row">
-            <!-- Cuenta de retiro -->
-            <div class="col-sm-offset-3 col-sm-3">
-                <div class="form-group">
-                    <label class="control-label">Cuenta retiro:</label>
-                    <select-account :id.sync="from_account_id"></select-account>
-                </div>
-            </div>
+            <div class="col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6">
+                <div class="row">
 
-            <!-- Cuenta de depósito -->
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label class="control-label">Cuenta destino:</label>
-                    <select-account :id.sync="to_account_id"></select-account>
-                </div>
-            </div>
-        </div><!-- .row -->
+                    <!-- Monto -->
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <amount class="input-lg" :amount.sync="amount"></amount>
+                        </div>
+                    </div>
 
-        <!-- Fecha -->
-        <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <div class="form-group">
-                    <label for="date" class="control-label">Fecha:</label>
-                    <input class="form-control" type="date" v-model="date" required>
-                </div>
-            </div>
-        </div>
+                    <!-- Descripción -->
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="description" class="control-label">Descripción:</label>
+                                <input class="form-control" type="text" v-model="description" :value="auto_description" autofocus required>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- Descripción -->
-        <div class="row">
-            <div class="col-sm-offset-3 col-sm-6">
-                <div class="form-group">
-                    <div class="form-group">
-                        <label for="description" class="control-label">Descripción:</label>
-                        <input class="form-control" type="text" v-model="description" :value="auto_description" autofocus required>
+                    <!-- Cuenta de retiro -->
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Cuenta retiro:</label>
+                            <select-account :id.sync="from_account_id"></select-account>
+                        </div>
+                    </div>
+
+                    <!-- Cuenta destino -->
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Cuenta destino:</label>
+                            <select-account :id.sync="to_account_id"></select-account>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <btn-modal modal="add-account">Agregar cuenta</btn-modal>
+                        </div>
+                    </div>
+
+                    <!-- Fecha -->
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="date" class="control-label">Fecha:</label>
+                            <input class="form-control" type="date" v-model="date" required>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary">Transferir</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="text-right">
-            <button type="submit" class="btn btn-primary">Transferir</button>
         </div>
     </form>
 </div>
@@ -63,11 +72,13 @@ import m from '../../messages';
 import Amount from '../amount.vue';
 import {accounts} from '../../vuex/getters';
 import SelectAccount from '../accounts/select-account.vue';
+import BtnModal from '../btn-modal.vue';
 
 export default {
     components: {
         Amount,
         SelectAccount,
+        BtnModal,
     },
 
     vuex: { getters: {accounts} },
@@ -127,6 +138,7 @@ export default {
         submitSuccess(response)
         {
             m.success('Transferencia realizada');
+            
             this.$router.go({name: 'movements.index'});
         },
 

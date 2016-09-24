@@ -10,15 +10,17 @@ export default new Vuex.Store({
          *
          * @type {Array}
          */
-        accounts: []
+        accounts: [],
+
+        currentModal: null,
     },
 
     mutations: {
         /**
          * Guarda las cuentas bancarias del usuario.
          *
-         * @param {object} state
-         * @param {array} accounts
+         * @param {Object} state
+         * @param {Array} accounts
          */
         SET_ACCOUNTS(state, accounts)
         {
@@ -28,12 +30,23 @@ export default new Vuex.Store({
         /**
          * Agrega una nueva cuenta.
          *
-         * @param {object} state
-         * @param {object} account
+         * @param {Object} state
+         * @param {Object} account
          */
         ADD_ACCOUNT(state, account)
         {
             state.accounts.push(account);
-        }
+        },
+
+        /**
+         * Establece el nombre del componente que se mostrará en un modal.
+         *
+         * @param {Object} state
+         * @param {String} state
+         */
+        SET_MODAL(state, modal)
+        {
+            state.currentModal = modal;
+        },
     }
 });

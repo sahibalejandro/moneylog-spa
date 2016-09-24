@@ -17,6 +17,21 @@ class Movement extends Model
     protected $fillable = ['account_id', 'amount', 'description', 'date'];
 
     /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        static::bootTraits();
+
+        static::saved(function ($movement) {
+            Account::where('id', $movement->account_id)
+                ->increment('amount', $movement->amount);
+        });
+    }
+
+    /**
      * Cuenta donde se realizó este movimiento.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -1,18 +1,18 @@
 <template>
+
     <div class="lead">Movimientos</div>
 
-    <a v-link="{name:'movements.create'}" class="btn btn-sm btn-link">
+    <a v-link="{name:'movements.create'}" class="btn btn-default">
         Agregar movimiento
     </a>
-    <a v-link="{name:'transfers.create'}" class="btn btn-sm btn-link">
+
+    <a v-link="{name:'transfers.create'}" class="btn btn-default">
         Hacer transferencia
     </a>
+
     <hr>
 
-    <movement v-for="movement in movements"
-        :movement="movement"
-        :remove="remove"
-    ></movement>
+    <movement v-for="movement in movements" :movement="movement" :remove="remove"></movement>
 </template>
 
 <script>

@@ -15,6 +15,7 @@ $factory->define(App\Account::class, function (Faker\Generator $faker) {
             return factory(App\User::class)->create()->id;
         },
         'name' => $faker->name,
+        'amount' => 0,
     ];
 });
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <title>Moneylog SPA</title>
@@ -11,16 +11,16 @@
     <body>
         <div id="app">
 
+            @include('partials.nav')
+            @include('partials.resume')
+
             <div class="container">
-                <nav>
-                    <a v-link="{name:'home'}">Inicio</a> &bull;
-                    <a v-link="{name:'movements.index'}">Movimientos</a>
-                </nav>
                 <div class="content">
                     <div v-if="!ready" class="alert alert-info">Cargando...</div>
                     <router-view v-else></router-view>
                 </div>
             </div>
+
             <modal></modal>
         </div>
         <script src="/js/app.js"></script>

@@ -10,7 +10,7 @@
                 <!-- Amount -->
                 <div class="form-group">
                     <label for="amount" class="control-label">Cantidad:</label>
-                    <amount :amount.sync="movement.amount"></amount>
+                    <amount class="input-lg" :amount.sync="movement.amount" v-ref:amount></amount>
                 </div>
 
                 <!-- Description -->
@@ -51,6 +51,7 @@ import SelectAccount from '../accounts/select-account.vue';
 import BtnModal from '../btn-modal.vue';
 
 export default {
+
     components: {
         Amount,
         SelectAccount,
@@ -80,6 +81,11 @@ export default {
         if (this.editMode) {
             this.get(this.$route.params.id);
         }
+    },
+
+    ready()
+    {
+        this.$nextTick( () => this.$refs.amount.focus() );
     },
 
     methods: {

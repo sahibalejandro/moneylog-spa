@@ -11,7 +11,7 @@
                     <!-- Monto -->
                     <div class="col-xs-12">
                         <div class="form-group">
-                            <amount class="input-lg" :amount.sync="amount"></amount>
+                            <amount class="input-lg" :amount.sync="amount" v-ref:amount></amount>
                         </div>
                     </div>
 
@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <div class="form-group">
                                 <label for="description" class="control-label">Descripción:</label>
-                                <input class="form-control" type="text" v-model="description" :value="auto_description" autofocus required>
+                                <input class="form-control" type="text" v-model="description" :value="auto_description" required>
                             </div>
                         </div>
                     </div>
@@ -92,6 +92,11 @@ export default {
             date: null,
             description: null,
         };
+    },
+
+    ready()
+    {
+        this.$nextTick( () => this.$refs.amount.focus() );
     },
 
     computed: {

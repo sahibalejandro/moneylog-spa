@@ -1,0 +1,1 @@
+# Moneylog version SPA reboot.

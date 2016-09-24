@@ -19,7 +19,8 @@ class CreatePaymentsTable extends Migration
             $table->integer('account_id')->unsigned();
             $table->foreign('account_id')->references('id')->on('accounts');
             $table->string('description');
-            $table->integer('amount');
+            $table->integer('amount')->unsigned();
+            $table->date('due_date');
             $table->timestamps();
         });
     }

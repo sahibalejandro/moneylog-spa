@@ -2,12 +2,9 @@
 
 use App\Movement;
 use App\MovementAction;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class MovementActionTest extends TestCase
 {
-    use DatabaseMigrations;
-
     public function test_user_makes_a_movement_action()
     {
         // Preparation.

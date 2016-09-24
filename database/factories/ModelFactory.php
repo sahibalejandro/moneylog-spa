@@ -28,8 +28,10 @@ $factory->define(App\Payment::class, function ($faker, $params) {
         'description' => $faker->sentence,
         'user_id' => $userId,
         'account_id' => function () use ($userId) {
-            return factory(App\Account::class)->create(['user_id' => $userId]);
+            return factory(App\Account::class)
+                ->create(['user_id' => $userId])->id;
         },
+        'due_date' => $faker->dateTimeBetween('1 week', '2 month'),
     ];
 });
 

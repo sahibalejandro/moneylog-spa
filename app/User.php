@@ -26,6 +26,16 @@ class User extends Authenticatable
     ];
 
     /**
+     * Cuentas del usuario.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function accounts()
+    {
+        return $this->hasMany(Account::class);
+    }
+
+    /**
      * Movimientos del usuario.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -36,13 +46,13 @@ class User extends Authenticatable
     }
 
     /**
-     * Cuentas del usuario.
+     * Pagos del usuario.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function accounts()
+    public function payments()
     {
-        return $this->hasMany(Account::class);
+        return $this->hasMany(Payment::class);
     }
 
     /**

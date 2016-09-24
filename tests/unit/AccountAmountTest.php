@@ -1,12 +1,9 @@
 <?php
 
 use App\MovementAction;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class AccountAmountTest extends TestCase
 {
-	use DatabaseMigrations;
-
 	public function test_se_actualiza_el_monto_de_una_cuenta_al_hacer_depositos_o_retiros()
 	{
 		// Crear una cuenta nueva con 0 pesos.

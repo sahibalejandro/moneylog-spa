@@ -10,8 +10,9 @@ Estética:
   ☐ Mostrar una barra de porcentaje en pagos con limite de iteraciones.
 
 Funcionalidad:
-  ☐ Buscador
-  ☐ Pagos
-  ☐ Dashboard
-  ☐ Categorías / Tags
-  ☐ Resumen (tota, pagos, disponible)
+  ☐ Buscador.
+  ☐ Pagos.
+  ☐ Dashboard.
+  ☐ Categorías / Tags.
+  ☐ Resumen (tota, pagos, disponible).
+  ☐ Contar los pagos no pagados y atrasados dentro de los pagos del mes en curso.

@@ -12,13 +12,15 @@
         <div id="app">
 
             @include('partials.nav')
-            @include('partials.resume')
+
 
             <div class="container">
-                <div class="content">
-                    <div v-if="!ready" class="alert alert-info">Cargando...</div>
-                    <router-view v-else></router-view>
+                <div class="text-right">
+                    <global-totals></global-totals>
                 </div>
+
+                <div v-if="!ready" class="alert alert-info">Cargando...</div>
+                <router-view v-else></router-view>
             </div>
 
             <modal></modal>

@@ -1,11 +1,12 @@
 import Vue from 'vue';
 import store from './vuex/store';
 import Modal from './components/modal.vue';
+import GlobalTotals from './components/global-totals.vue';
 
 export default Vue.extend({
     store,
 
-    components: {Modal},
+    components: {GlobalTotals, Modal},
 
     data()
     {
@@ -17,7 +18,7 @@ export default Vue.extend({
 
     compiled()
     {
-        this.loadAccounts();
+        this.loadGlobalData();
     },
 
     vuex: {
@@ -27,11 +28,16 @@ export default Vue.extend({
              *
              * @param {Vuex.Store} store
              */
-            loadAccounts(store)
+            loadGlobalData(store)
             {
-                this.$http.get('/api/accounts').then(
+                this.$http.get('/api/global-data').then(
                     response => {
-                        store.dispatch('SET_ACCOUNTS', response.json());
+                        const data = response.json();
+
+                        store.dispatch('SET_ACCOUNTS', data.accounts);
+                        store.dispatch('SET_ACCOUNTS_TOTAL', data.accounts_total);
+                        store.dispatch('SET_PAYMENTS_TOTAL', data.payments_total);
+
                         this.ready = true;
                     },
                     response => {

@@ -10,4 +10,12 @@ elixir(function(mix) {
     ], 'public/css/app.css');
 
     mix.browserify('app.js');
+    mix.browserSync({
+    	proxy: 'moneylog-spa.dev',
+    	files: [
+    		'app/**/*.php',
+    		'public/css/**/*.css',
+    		'resources/views/**/*.php',
+    	],
+    });
 });

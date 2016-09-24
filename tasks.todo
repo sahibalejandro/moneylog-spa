@@ -1,0 +1,6 @@
+Shame:
+  ☐ Tal vez cambiar pusub por vuex a la hora de agregar una cuenta nueva.
+  ☐ Tal vez sea necesario crear un módulo "vuex/actions.js" donde agrupar las acciones comunes.
+
+Refactoring:
+  ☐ Nombrar correctamente los elementos de "modal" por "modal-container".

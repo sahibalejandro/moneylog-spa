@@ -67,9 +67,12 @@ export default {
     {
         return {
             editMode: false,
+            originalAmount: 0,
+
             states: {
                 saving: false,
             },
+
             movement: {
                 description: null,
                 amount: null,
@@ -105,6 +108,7 @@ export default {
             this.$http.get('/api/movements/' + id).then(
                 response => {
                     this.movement = response.json();
+                    this.originalAmount = this.movement.amount;
                 },
                 response => {
                     // bootstrap/vue-resource.js
@@ -116,7 +120,7 @@ export default {
         save()
         {
             // El método y url para el request dependerá de si estamos en modo
-            // dición (patch) o no (post).
+            // edición (patch) o no (post).
             let method = this.editMode ? 'patch' : 'post';
             let url = this.editMode
                 ? '/api/movements/' + this.movement.id
@@ -124,12 +128,10 @@ export default {
 
             this.$http[method](url, this.movement).then(
                 response => {
-                    let message = method == 'post'
-                        ? 'Movimiento registrado'
-                        : 'Movimiento actualizado';
-
-                    m.success(message);
-                    this.incrementAccountsTotal(this.movement.amount);
+                    this.incrementAccountsTotal(
+                        this.movement.amount - this.originalAmount
+                    );
+                    this.showSuccessMessage();
                     this.$router.go({name: 'movements.index'});
                 },
                 response => {
@@ -137,6 +139,17 @@ export default {
                 }
             );
         }, // methods.save
+
+        /**
+         * Muestra un mensaje para notificar al usuario que el movimiento fue
+         * registrado o actualizado con éxito.
+         */
+        showSuccessMessage()
+        {
+            m.success(
+                this.editMode ? 'Movimiento actualizado': 'Movimiento registrado'
+            );
+        },
     }, // methods
 };
 </script>

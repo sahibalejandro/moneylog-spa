@@ -1,7 +1,9 @@
 <template>
-    Total: {{ accountsTotal | cents | currency }} &bull;
-    Pagos: {{ paymentsTotal | cents | currency }} &bull;
-    Disponible: {{ availableTotal | cents | currency }}
+    <div>
+        Total: {{ accountsTotal | cents | currency }} &bull;
+        Pagos: {{ paymentsTotal | cents | currency }} &bull;
+        Disponible: {{ availableTotal | cents | currency }}
+    </div>
 </template>
 
 <script>

@@ -48,7 +48,7 @@ export default {
      * @param {string} title
      * @param {string} type
      */
-    ask(text, title = '', type = 'question')
+    confirm(text, title = '', type = 'question')
     {
         return swal({type, title, text,
             showCancelButton: true,

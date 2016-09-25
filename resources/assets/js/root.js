@@ -2,11 +2,20 @@ import Vue from 'vue';
 import store from './vuex/store';
 import ModalContainer from './components/modal-container.vue';
 import GlobalTotals from './components/global-totals.vue';
+import {setAccounts, setAccountsTotal, setPaymentsTotal} from './vuex/actions/accounts';
 
 export default Vue.extend({
     store,
 
     components: {GlobalTotals, ModalContainer},
+
+    vuex: {
+        actions: {
+            setAccounts,
+            setAccountsTotal,
+            setPaymentsTotal,
+        },
+    },
 
     data()
     {
@@ -21,30 +30,23 @@ export default Vue.extend({
         this.loadGlobalData();
     },
 
-    vuex: {
-        actions: {
-            /**
-             * Carga la lista de cuentas bancarias.
-             *
-             * @param {Vuex.Store} store
-             */
-            loadGlobalData(store)
-            {
-                this.$http.get('/api/global-data').then(
-                    response => {
-                        const data = response.json();
+    methods: {
+        loadGlobalData()
+        {
+            this.$http.get('/api/global-data').then(
+                response => {
+                    const data = response.json();
 
-                        store.dispatch('SET_ACCOUNTS', data.accounts);
-                        store.dispatch('SET_ACCOUNTS_TOTAL', data.accounts_total);
-                        store.dispatch('SET_PAYMENTS_TOTAL', data.payments_total);
+                    this.setAccounts(data.accounts);
+                    this.setAccountsTotal(data.accounts_total);
+                    this.setPaymentsTotal(data.payments_total);
 
-                        this.ready = true;
-                    },
-                    response => {
-                        // bootstrap/vue-resource.js
-                    }
-                );
-            } // vuex.actions.loadAccounts
-        } // vuex.actions
-    } // vuex
+                    this.ready = true;
+                },
+                response => {
+                    // bootstrap/vue-resource.js
+                }
+            );
+        },
+    },
 });

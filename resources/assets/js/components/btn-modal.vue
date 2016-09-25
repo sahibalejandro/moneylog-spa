@@ -1,29 +1,28 @@
 <template>
-	<button :class="cssClass" type="button" @click.prevent="showModal">
-		<slot>Modal</slot>
-	</button>
+    <button :class="cssClass" type="button" @click.prevent="setModal(this.modal)">
+        <slot>Modal</slot>
+    </button>
 </template>
 
 <script>
-export default {
-props: {
-		modal: {
-			required: true,
-			type: String,
-		},
-		cssClass: {
-			type: String,
-			default: 'btn btn-sm btn-default',
-		},
-	},
+import {setModal} from '../vuex/actions/modal';
 
-	vuex: {
-		actions: {
-			showModal(state)
-			{
-				state.dispatch('SET_MODAL', this.modal);
-			}
-		}
-	}
+export default {
+    props: {
+        modal: {
+            required: true,
+            type: String,
+        },
+        cssClass: {
+            type: String,
+            default: 'btn btn-sm btn-default',
+        },
+    },
+
+    vuex: {
+        actions: {
+            setModal,
+        },
+    },
 }
 </script>

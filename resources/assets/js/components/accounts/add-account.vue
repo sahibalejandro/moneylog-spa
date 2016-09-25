@@ -33,9 +33,18 @@
 <script>
 import Amount from '../amount.vue';
 import pubsub from '../../utils/pubsub';
+import {closeModal} from '../../vuex/actions/modal';
+import {addAccount} from '../../vuex/actions/accounts';
 
 export default {
     components: {Amount},
+
+    vuex: {
+        actions: {
+            closeModal,
+            addAccount,
+        },
+    },
 
     data()
     {
@@ -50,26 +59,6 @@ export default {
     ready()
     {
         this.$nextTick( () => this.$els.name.focus() );
-    },
-
-    vuex: {
-        actions: {
-            /**
-             * Agrega una cuenta al store.
-             *
-             * @param {object} state
-             * @param {object} account
-             */
-            addAccount(state, account)
-            {
-                state.dispatch('ADD_ACCOUNT', account);
-            },
-
-            close(state)
-            {
-                state.dispatch('SET_MODAL', null);
-            }
-        }
     },
 
     methods: {
@@ -96,7 +85,7 @@ export default {
 
             pubsub.pub('account.added', account);
 
-            this.close();
+            this.closeModal();
         },
 
         /**

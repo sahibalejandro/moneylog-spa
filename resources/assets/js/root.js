@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import store from './vuex/store';
-import Modal from './components/modal.vue';
+import ModalContainer from './components/modal-container.vue';
 import GlobalTotals from './components/global-totals.vue';
 
 export default Vue.extend({
     store,
 
-    components: {GlobalTotals, Modal},
+    components: {GlobalTotals, ModalContainer},
 
     data()
     {

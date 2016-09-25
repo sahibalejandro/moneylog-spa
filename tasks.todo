@@ -3,7 +3,7 @@ Mejoras:
   ☐ Tal vez sea necesario crear un módulo "vuex/actions.js" donde agrupar las acciones comunes.
 
 Refactoring:
-  ☐ Nombrar correctamente los elementos de "modal" por "modal-container".
+  ✔ Nombrar correctamente los elementos de "modal" por "modal-container". @done (16-09-24 19:53)
 
 Estética:
   ☐ Hacer responsive el botón de cerrar de los modales.

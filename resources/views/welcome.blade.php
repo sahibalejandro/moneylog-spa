@@ -23,7 +23,7 @@
                 <router-view v-else></router-view>
             </div>
 
-            <modal></modal>
+            <modal-container></modal-container>
         </div>
         <script src="/js/app.js"></script>
     </body>

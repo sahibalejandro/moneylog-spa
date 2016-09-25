@@ -1,7 +1,7 @@
 <template>
-	<div class="modal-component" :class="{'is-open': currentModal}">
-		<div class="modal-component__body">
-			<button class="btn btn-danger modal-component__close" type="button" @click.prevent="close">&times;</button>
+	<div class="modal-container" :class="{'is-open': currentModal}">
+		<div class="modal-container__body">
+			<button class="btn btn-danger modal-container__close" type="button" @click.prevent="close">&times;</button>
 			<component :is="currentModal"></component>
 		</div>
 	</div>

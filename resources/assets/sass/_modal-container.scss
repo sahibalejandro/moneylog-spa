@@ -1,4 +1,4 @@
-.modal-component {
+.modal-container {
 	background-color: rgba(#000, 0.8);
 	display: none;
 	position: fixed;
@@ -15,13 +15,13 @@
 	}
 }
 
-.modal-component__close {
+.modal-container__close {
 	position: absolute;
 	right: 20px;
 	top: 20px;
 }
 
-.modal-component__body {
+.modal-container__body {
 	background-color: white;
 	border-radius: 5px;
 	max-width: 500px;

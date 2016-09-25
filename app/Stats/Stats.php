@@ -23,7 +23,9 @@ class Stats
 	 */
 	public function accountsTotal()
 	{
-		return (int) $this->user->accounts()->sum('amount');
+        return $this->user->accounts->reduce(function ($amount, $account) {
+            return $amount += $account->amount();
+        }, 0);
 	}
 
     /**

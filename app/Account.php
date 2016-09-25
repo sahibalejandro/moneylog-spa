@@ -27,15 +27,12 @@ class Account extends Model
     }
 
     /**
-     * Actualiza el monto de la cuenta con base en todos sus movimientos.
+     * Devuelve el monto disponible en la cuenta.
      * 
-     * @return $this
+     * @return int
      */
-    public function updateAmount()
+    public function amount()
     {
-        $this->amount = $this->movements()->sum('amount');
-        $this->save();
-
-        return $this;
+        return (int) $this->movements()->sum('amount');
     }
 }

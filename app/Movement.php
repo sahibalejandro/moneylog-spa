@@ -15,25 +15,7 @@ class Movement extends Model
      * @var array
      */
     protected $fillable = ['account_id', 'amount', 'description', 'date'];
-
-    /**
-     * The "booting" method of the model.
-     *
-     * @return void
-     */
-    protected static function boot()
-    {
-        static::bootTraits();
-
-        static::saved(function ($movement) {
-            $movement->account->updateAmount();
-        });
-
-        static::deleted(function ($movement) {
-            $movement->account->updateAmount();
-        });
-    }
-
+    
     /**
      * Cuenta donde se realizó este movimiento.
      *

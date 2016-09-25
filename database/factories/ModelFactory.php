@@ -15,13 +15,14 @@ $factory->define(App\Account::class, function (Faker\Generator $faker) {
             return factory(App\User::class)->create()->id;
         },
         'name' => $faker->name,
-        'amount' => 0,
     ];
 });
 
 $factory->define(App\Payment::class, function ($faker, $params) {
 
-    $userId = $params['user_id'] ?: factory(App\User::class)->create()->id;
+    $userId = isset($params['user_id'])
+        ? $params['user_id']
+        : factory(App\User::class)->create()->id;
 
     return [
         'amount' => $faker->numberBetween(10000, 100000),
@@ -37,7 +38,9 @@ $factory->define(App\Payment::class, function ($faker, $params) {
 
 $factory->define(App\Movement::class, function (Faker\Generator $faker, $params) {
 
-    $userId = $params['user_id'] ?: factory(App\User::class)->create()->id;
+    $userId = isset($params['user_id'])
+        ? $params['user_id']
+        : factory(App\User::class)->create()->id;
 
     return [
         'user_id' => $userId,

@@ -7,9 +7,13 @@ class StatsTest extends TestCase
 {
     public function test_devuelve_la_suma_de_todas_las_cuentas_de_un_usuario()
     {
-        $account = factory(App\Account::class)->create(['amount' => 1]);
-        factory(App\Account::class)->create(['amount' => 2, 'user_id' => $account->user_id]);
-        factory(App\Account::class)->create(['amount' => 3, 'user_id' => $account->user_id]);
+        $account = factory(App\Account::class)->create();
+        
+        factory(App\Movement::class, 2)->create([
+            'amount' => 3,
+            'account_id' => $account->id,
+            'user_id' => $account->user_id,
+        ]);
 
         $stats = new Stats($account->user);
 

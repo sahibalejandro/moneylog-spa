@@ -49,6 +49,7 @@ import m from '../../messages';
 import Amount from '../amount.vue';
 import SelectAccount from '../accounts/select-account.vue';
 import BtnModal from '../btn-modal.vue';
+import {incrementAccountsTotal} from '../../vuex/actions/accounts';
 
 export default {
 
@@ -56,6 +57,10 @@ export default {
         Amount,
         SelectAccount,
         BtnModal,
+    },
+
+    vuex: {
+        actions: {incrementAccountsTotal},
     },
 
     data()
@@ -78,6 +83,7 @@ export default {
     {
         this.editMode = this.$route.params.id != undefined;
 
+        // Obtener los datos del movimiento si estamos en modo de edición.
         if (this.editMode) {
             this.get(this.$route.params.id);
         }
@@ -89,6 +95,11 @@ export default {
     },
 
     methods: {
+        /**
+         * Obtiene desde el servidor los datos de un movimiento.
+         *
+         * @param {Number} id
+         */
         get(id)
         {
             this.$http.get('/api/movements/' + id).then(
@@ -104,6 +115,8 @@ export default {
 
         save()
         {
+            // El método y url para el request dependerá de si estamos en modo
+            // dición (patch) o no (post).
             let method = this.editMode ? 'patch' : 'post';
             let url = this.editMode
                 ? '/api/movements/' + this.movement.id
@@ -116,7 +129,7 @@ export default {
                         : 'Movimiento actualizado';
 
                     m.success(message);
-
+                    this.incrementAccountsTotal(this.movement.amount);
                     this.$router.go({name: 'movements.index'});
                 },
                 response => {

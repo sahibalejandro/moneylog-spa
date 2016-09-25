@@ -23,7 +23,7 @@ class Stats
 	 */
 	public function accountsTotal()
 	{
-		return $this->user->accounts()->sum('amount');
+		return (int) $this->user->accounts()->sum('amount');
 	}
 
     /**
@@ -36,7 +36,7 @@ class Stats
         $month = date('m');
         $year  = date('Y');
 
-        return $this->user->payments()
+        return (int) $this->user->payments()
             ->whereRaw("MONTH(due_date) = $month AND YEAR(due_date) = $year")
             ->sum('amount');
     }

@@ -1,6 +1,7 @@
 Mejoras:
   ☐ Tal vez cambiar pub-sub por vuex a la hora de agregar una cuenta nueva.
   ✔ Tal vez sea necesario crear un módulo "vuex/actions.js" donde agrupar las acciones comunes. @done (16-09-24 21:28)
+  ☐ Calcular el total de la cuenta sin sumar todo cada vez que se crea, actualiza o borra un movimiento.
 
 Refactoring:
   ✔ Nombrar correctamente los elementos de "modal" por "modal-container". @done (16-09-24 19:53)
@@ -14,5 +15,9 @@ Funcionalidad:
   ☐ Pagos.
   ☐ Dashboard.
   ☐ Categorías / Tags.
-  ☐ Resumen (tota, pagos, disponible).
+  ✔ Resumen (total, pagos, disponible). @done (16-09-24 21:30)
   ☐ Contar los pagos no pagados y atrasados dentro de los pagos del mes en curso.
+  ☐ Actualizar estadísticas globales al crear, editar y borrar movimientos.
+  ☐ Actualizar estadísticas globales al crear transferencias.
+  ☐ Actualizar estadísticas globales al crear, editar y borrar pagos.
+  ☐ Actualizar estadísticas globales al pagar pagos.

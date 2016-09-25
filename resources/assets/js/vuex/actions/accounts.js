@@ -13,3 +13,7 @@ export const setAccountsTotal = ({dispatch}, total) => {
 export const setPaymentsTotal = ({dispatch}, total) => {
     dispatch('SET_PAYMENTS_TOTAL', total);
 };
+
+export const incrementAccountsTotal = ({dispatch}, amount) => {
+    dispatch('INCREMENT_ACCOUNTS_TOTAL', amount);
+};

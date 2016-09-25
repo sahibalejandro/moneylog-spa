@@ -40,6 +40,7 @@ export default new Vuex.Store({
         ADD_ACCOUNT: (state, account) => state.accounts.push(account),
         SET_ACCOUNTS_TOTAL: (state, total) => state.accountsTotal = total,
         SET_PAYMENTS_TOTAL: (state, total) => state.paymentsTotal = total,
+        INCREMENT_ACCOUNTS_TOTAL: (state, amount) => state.accountsTotal += amount,
         SET_MODAL: (state, modal) => state.currentModal = modal,
     },
 });

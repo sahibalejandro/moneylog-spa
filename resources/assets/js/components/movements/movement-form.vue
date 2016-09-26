@@ -45,11 +45,12 @@
     </div>
 </template>
 <script>
+import moment from 'moment';
 import m from '../../messages';
 import Amount from '../amount.vue';
-import SelectAccount from '../accounts/select-account.vue';
 import BtnModal from '../btn-modal.vue';
 import {incrementAccountsTotal} from '../../vuex/actions/accounts';
+import SelectAccount from '../accounts/select-account.vue';
 
 export default {
 
@@ -76,7 +77,7 @@ export default {
             movement: {
                 description: null,
                 amount: null,
-                date: null,
+                date: moment().format('YYYY-MM-DD'),
                 account_id: null,
             },
         };

@@ -18,7 +18,7 @@ class MovementsController extends Controller
         return request()->user()->movements()
             ->orderBy('date', 'desc')
             ->orderBy('id', 'desc')
-            ->take(10)
+            ->take(request()->get('limit', 10))
             ->get();
     }
 

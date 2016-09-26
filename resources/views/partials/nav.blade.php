@@ -22,7 +22,7 @@
 		<div class="collapse navbar-collapse" id="nav">
 			<ul class="nav navbar-nav">
 				<li>
-				    <a v-link="{name:'home'}">Dashboard</a>
+				    <a v-link="{name:'dashboard'}">Dashboard</a>
 				</li>
 				<li>
 				    <a v-link="{name:'movements.index'}">Movimientos</a>

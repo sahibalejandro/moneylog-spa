@@ -1,7 +1,7 @@
 export default {
     '/': {
-        name: 'home',
-        component: require('./components/home.vue'),
+        name: 'dashboard',
+        component: require('./components/dashboard.vue'),
     },
 
     '/movements': {

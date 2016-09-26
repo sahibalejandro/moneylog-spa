@@ -33,6 +33,7 @@ $factory->define(App\Payment::class, function ($faker, $params) {
                 ->create(['user_id' => $userId])->id;
         },
         'due_date' => $faker->dateTimeBetween('2 day', '1 week'),
+        'paid' => false,
     ];
 });
 

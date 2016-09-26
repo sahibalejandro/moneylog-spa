@@ -3,6 +3,7 @@
 namespace App\Stats;
 
 use App\User;
+use App\Repositories\Payments;
 
 class Stats
 {
@@ -29,17 +30,13 @@ class Stats
 	}
 
     /**
-     * Devuelve la suma de los pagos que se deben realizar en el mes actual.
+     * Devuelve la suma de los pagos que se deben realizar antes de terminar
+     * el mes actual, es decir que también inlcuye los pagos vencidos.
      * 
      * @return integer
      */
     public function paymentsTotal()
     {
-        $month = date('m');
-        $year  = date('Y');
-
-        return (int) $this->user->payments()
-            ->whereRaw("MONTH(due_date) = $month AND YEAR(due_date) = $year")
-            ->sum('amount');
+        return Payments::of($this->user)->totalUntilThisMonth();
     }
 }

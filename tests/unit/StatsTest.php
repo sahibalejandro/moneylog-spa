@@ -8,7 +8,7 @@ class StatsTest extends TestCase
     public function test_devuelve_la_suma_de_todas_las_cuentas_de_un_usuario()
     {
         $account = factory(App\Account::class)->create();
-        
+
         factory(App\Movement::class, 2)->create([
             'amount' => 3,
             'account_id' => $account->id,
@@ -26,22 +26,35 @@ class StatsTest extends TestCase
         $faker = \Faker\Factory::create();
         $user = factory(App\User::class)->create();
 
-        factory(App\Payment::class, 3)->create([
+        $overdue = factory(App\Payment::class)->create([
+            'amount' => 1000,
+            'user_id' => $user->id,
+            'due_date' => date('Y-m-d', strtotime('-1 month')),
+        ]);
+
+        $current = factory(App\Payment::class)->create([
             'amount'  => 1000,
             'user_id' => $user->id,
             'due_date' => date('Y-m-d'),
         ]);
 
-        factory(App\Payment::class)->create([
-            'amount' => 2000,
+        $currentPaid = factory(App\Payment::class)->create([
+            'amount'  => 1000,
             'user_id' => $user->id,
-            'due_date' => date('Y-m-d', strtotime('-1 month')),
+            'due_date' => date('Y-m-d'),
+            'paid' => true,
+        ]);
+
+        $future = factory(App\Payment::class)->create([
+            'amount' => 1000,
+            'user_id' => $user->id,
+            'due_date' => date('Y-m-d', strtotime('+1 month')),
         ]);
 
         // Realizar acciones
         $stats = new Stats($user);
     
         // Validar resultados
-        $this->assertEquals(3000, $stats->paymentsTotal());
+        $this->assertEquals(2000, $stats->paymentsTotal());
     }
 }

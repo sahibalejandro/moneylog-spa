@@ -31,6 +31,7 @@ export default {
         loadPayments()
         {
             this.loading = true;
+
             this.$http.get(this.url).then(
                 response => this.payments = response.json(),
                 response => {

@@ -49,8 +49,8 @@ import moment from 'moment';
 import m from '../../messages';
 import Amount from '../amount.vue';
 import BtnModal from '../btn-modal.vue';
-import {incrementAccountsTotal} from '../../vuex/actions/accounts';
 import SelectAccount from '../accounts/select-account.vue';
+import {incrementAccountsTotal} from '../../vuex/actions/accounts';
 
 export default {
 

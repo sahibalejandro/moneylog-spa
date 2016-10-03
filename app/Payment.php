@@ -46,4 +46,15 @@ class Payment extends Model
 
         return $query->where('due_date', '<=', $date->endOfMonth());
     }
+
+    /**
+     * Filtra pagos cuya fecha de pago ya pasó.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOverdue($query)
+    {
+        return $query->where('due_date', '<', Carbon::now());
+    }
 }

@@ -24,15 +24,15 @@
 .modal-container__body {
 	background-color: white;
 	border-radius: 5px;
-	max-width: 500px;
+    width: 90%;
 	padding: 20px;
 	position: relative;
 
-	@include mobile {
-		max-width: 90%;
+	@include sm {
+		max-width: 80%;
 	}
 
-	@include tablet {
-		max-width: 80%;
+	@include md {
+	    max-width: 500px;
 	}
 }

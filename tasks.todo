@@ -1,23 +1,30 @@
 Mejoras:
-  ✘ Tal vez cambiar pub-sub por vuex a la hora de agregar una cuenta nueva. @cancelled (16-09-25 15:30)
-  ✔ Tal vez sea necesario crear un módulo "vuex/actions.js" donde agrupar las acciones comunes. @done (16-09-24 21:28)
-  ✘ Calcular el total de la cuenta sin sumar todo cada vez que se crea, actualiza o borra un movimiento. @cancelled (16-09-25 15:30)
+  ✘ Tal vez cambiar pub-sub por vuex a la hora de agregar una cuenta nueva. @cancelled (2016-10-01 20:30)
+  ✘ Calcular el total de la cuenta sin sumar todo cada vez que se crea, actualiza o borra un movimiento. @cancelled (2016-10-01 20:30)
 
 Refactoring:
-  ✔ Nombrar correctamente los elementos de "modal" por "modal-container". @done (16-09-24 19:53)
 
 Estética:
   ☐ Hacer responsive el botón de cerrar de los modales.
   ☐ Mostrar una barra de porcentaje en pagos con limite de iteraciones.
+  ☐ Revisar todo el maquetado en móvil
+  ☐ Revisar todo el maquetado en tablet
+  ☐ Revisar todo el maquetado en small desktop
+  ☐ Revisar todo el maquetado en large desktop
 
 Funcionalidad:
   ☐ Buscador.
   ☐ Pagos.
   ☐ Dashboard.
   ☐ Categorías / Tags.
-  ✔ Resumen (total, pagos, disponible). @done (16-09-24 21:30)
   ☐ Contar los pagos no pagados y atrasados dentro de los pagos del mes en curso.
-  ✔ Actualizar estadísticas globales al crear, editar y borrar movimientos. @done (16-09-25 16:15)
-  ☐ Actualizar estadísticas globales al crear transferencias.
+  ✘ Actualizar estadísticas globales al crear transferencias. @cancelled (2016-10-01 20:31)
   ☐ Actualizar estadísticas globales al crear, editar y borrar pagos.
   ☐ Actualizar estadísticas globales al pagar pagos.
+
+Archive:
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+  ✔ Tal vez sea necesario crear un módulo "vuex/actions.js" donde agrupar las acciones comunes. @done (16-09-24 21:28)
+  ✔ Nombrar correctamente los elementos de "modal" por "modal-container". @done (16-09-24 19:53)
+  ✔ Resumen (total, pagos, disponible). @done (16-09-24 21:30)
+  ✔ Actualizar estadísticas globales al crear, editar y borrar movimientos. @done (16-09-25 16:15)

@@ -1,0 +1,17 @@
+.make-payment {
+    //
+} /* end of .make-payment */
+
+.make-payment__amount {
+    font-size: 3em;
+    text-align: center;
+
+    @include sm {
+        font-size: 2em;
+        text-align: left;
+    }
+} /* end of .make-payment__amount */
+
+.make-payment__description {
+    font-size: 1.2em;
+} /* end of .make-payment__description */

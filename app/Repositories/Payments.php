@@ -64,6 +64,20 @@ class Payments
     }
 
     /**
+     * Devuelve un listado de pagos que ya pasó su fecha de pago.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function overdue()
+    {
+        return $this->payments()
+            ->unpaid()
+            ->overdue()
+            ->orderBy('due_date', 'asc')
+            ->get();
+    }
+
+    /**
      * Devuelve el total de los pagos que deben ser pagados antes del fin del
      * mes actual, esto inlcuye los pagos atrasados.
      * 

@@ -1,0 +1,17 @@
+.payment {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+} /* end of .payment */
+
+.payment__amount {
+    font-size: 1.5em;
+} /* end of .payment__amount */
+
+.payment__due-date {
+    font-size: 0.9em;
+} /* end of .payment__due-date */
+
+.payment__description {
+    margin: 0.5em 0;
+} /* end of .payment__description */

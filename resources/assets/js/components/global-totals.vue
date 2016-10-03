@@ -1,8 +1,17 @@
 <template>
-    <div>
-        Total: {{ accountsTotal | cents | currency }} &bull;
-        Pagos: {{ paymentsTotal | cents | currency }} &bull;
-        Disponible: {{ availableTotal | cents | currency }}
+    <div class="global-totals">
+        <div>
+            <label>Total:</label><br class="visible-xs-inline">
+            {{ accountsTotal | cents | currency }}
+        </div>
+        <div>
+            <label>Pagos del mes:</label><br class="visible-xs-inline">
+            {{ paymentsTotal | cents | currency }}
+        </div>
+        <div>
+            <label>Disponible:</label><br class="visible-xs-inline">
+            {{ availableTotal | cents | currency }}
+        </div>
     </div>
 </template>
 

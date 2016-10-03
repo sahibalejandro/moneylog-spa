@@ -23,4 +23,9 @@ export default {
         name: 'transfers.create',
         component: require('./components/transfers/transfer-form.vue'),
     },
+
+    '/payments/:id/pay': {
+        name: 'payments.pay',
+        component: require('./components/payments/make-payment.vue'),
+    },
 };

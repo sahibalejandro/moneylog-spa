@@ -9,20 +9,25 @@
 
 <script>
 import {currentModal} from '../vuex/getters';
-import AddAccount from './accounts/add-account.vue';
 import {closeModal} from '../vuex/actions/modal';
+
+/*
+ * Aquí se deben incluir todos los componentes que pueden ser lanzados como
+ * ventana modal.
+ */
+import AddAccount from './accounts/add-account.vue';
 
 export default {
 	components: {
-		AddAccount,
+		AddAccount
 	},
 
 	vuex: {
 		getters: {
-			currentModal,
+			currentModal
 		},
 		actions: {
-			closeModal,
+			closeModal
 		},
 	},
 }

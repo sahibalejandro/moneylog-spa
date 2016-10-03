@@ -11,3 +11,5 @@ Route::resource('api/movements', 'MovementsController', ['except' => ['create', 
 Route::resource('api/transfers', 'TransfersController', ['only' => 'store']);
 
 Route::get('api/payments/current', 'PaymentsController@current');
+Route::get('api/payments/overdue', 'PaymentsController@overdue');
+Route::get('api/payments/{id}', 'PaymentsController@show');

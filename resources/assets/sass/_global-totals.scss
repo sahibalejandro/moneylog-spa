@@ -1,0 +1,14 @@
+.global-totals {
+    font-size: 0.8em;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    @include sm {
+        justify-content: flex-end;
+
+        & > div {
+            margin-left: 1.5em;
+        }
+    }
+} /* end of .global-totals */

@@ -7,6 +7,7 @@
         </div>
         <div class="col-sm-6">
             <div class="lead">Pagos vencidos</div>
+            <payments-list url="/api/payments/overdue"></payments-list>
         </div>
     </div>
 
